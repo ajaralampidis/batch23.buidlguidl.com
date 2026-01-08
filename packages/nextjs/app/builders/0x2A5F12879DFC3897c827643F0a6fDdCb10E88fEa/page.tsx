@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Address } from "@scaffold-ui/components";
 import type { NextPage } from "next";
 
-const BuilderPage: NextPage = () => {
+const Devdanny: NextPage = () => {
   return (
     <div className="flex items-center flex-col flex-grow pt-10">
       <div className="px-5">
@@ -63,4 +63,4 @@ const BuilderPage: NextPage = () => {
   );
 };
 
-export default BuilderPage;
+export default Devdanny;

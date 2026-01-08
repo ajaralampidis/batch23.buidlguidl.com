@@ -2,10 +2,9 @@
 
 import Image from "next/image";
 import { Address, Balance } from "@scaffold-ui/components";
+import type { NextPage } from "next";
 import { Address as AddressType } from "viem";
-import { hardhat } from "viem/chains";
 import { EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/outline";
-import { useTargetNetwork } from "~~/hooks/scaffold-eth";
 
 const GithubIcon = () => (
   <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -57,11 +56,9 @@ const builderData = {
 const TechBadge = ({ tech }: { tech: string }) => (
   <span className="badge badge-outline badge-sm hover:badge-primary transition-colors cursor-default">{tech}</span>
 );
+const address = "0xA1F881691f1C687E23DAe139C4Ec243480420EDD" as AddressType;
 
-const BuilderPage = () => {
-  const address = "0xA1F881691f1C687E23DAe139C4Ec243480420EDD" as AddressType;
-  const { targetNetwork } = useTargetNetwork();
-
+const Roudra323Page: NextPage = () => {
   return (
     <div className="flex items-center flex-col grow pt-10 pb-8">
       <div className="px-5 w-full max-w-4xl">
@@ -135,14 +132,7 @@ const BuilderPage = () => {
             <div className="bg-base-200/50 rounded-2xl p-4">
               <h3 className="text-sm font-semibold text-base-content/60 uppercase tracking-wide mb-3">Wallet</h3>
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                <Address
-                  address={address}
-                  format="long"
-                  onlyEnsOrAddress
-                  blockExplorerAddressLink={
-                    targetNetwork.id === hardhat.id ? `/blockexplorer/address/${address}` : undefined
-                  }
-                />
+                <Address address={address} format="long" onlyEnsOrAddress />
                 <div className="flex items-center gap-2 bg-base-100 px-3 py-1.5 rounded-lg">
                   <span className="text-sm text-base-content/60">Balance:</span>
                   <Balance address={address} />
@@ -176,4 +166,4 @@ const BuilderPage = () => {
   );
 };
 
-export default BuilderPage;
+export default Roudra323Page;

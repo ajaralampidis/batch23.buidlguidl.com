@@ -11,7 +11,7 @@ import { GithubIcon, LinkedInIcon } from "~~/components/assets/SocialIcons";
 const builderData = {
   name: "Asir Shahriar Roudra",
   country: "Dhaka, Bangladesh",
-  profileImage: "/builders/0xA1F881691f1C687E23DAe139C4Ec243480420EDD.jpg",
+  profileImage: "/builders/0xA1F881691f1C687E23DAe139C4Ec243480420EDD.webp",
   github: "https://github.com/roudra323",
   linkedin: "https://linkedin.com/in/roudra323",
   email: "asirroudra@gmail.com",

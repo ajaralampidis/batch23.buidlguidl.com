@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import { Address, Balance } from "@scaffold-ui/components";
 import type { NextPage } from "next";

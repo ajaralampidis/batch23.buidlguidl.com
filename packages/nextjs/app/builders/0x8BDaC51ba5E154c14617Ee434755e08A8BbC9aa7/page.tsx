@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Address } from "@scaffold-ui/components";
 import { NextPage } from "next";
-import { FaGithub } from "react-icons/fa";
+import { GithubIcon } from "~~/components/assets/SocialIcons";
 
 const PageOfShrestha: NextPage = () => {
   return (
@@ -78,7 +78,7 @@ const PageOfShrestha: NextPage = () => {
             rel="noopener noreferrer"
             className="rounded-full border border-black dark:border-white px-4 py-2 text-sm font-medium text-black dark:text-white hover:bg-pink-700 dark:hover:bg-pink-300 hover:text-white dark:hover:text-black"
           >
-            <FaGithub />
+            <GithubIcon className="h-5 w-5" />
           </Link>
         </div>
       </div>

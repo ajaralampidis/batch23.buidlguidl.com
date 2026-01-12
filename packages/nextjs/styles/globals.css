@@ -104,6 +104,75 @@
   background: var(--color-base-200);
 }
 
+/* animate-marquee */
+:root {
+  --animate-marquee-duration: 6000s;
+  --animate-marquee-timing: linear;
+  --animate-marquee-iteration: infinite;
+  --animate-marquee-direction: normal;
+  --animate-marquee-delay: 0s;
+}
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.animate-marquee {
+  animation-name: marquee;
+  animation-duration: var(--animate-marquee-duration, 6000s);
+  animation-timing-function: var(--animate-marquee-timing, linear);
+  animation-iteration-count: var(--animate-marquee-iteration, infinite);
+  animation-direction: var(--animate-marquee-direction, normal);
+  animation-delay: var(--animate-marquee-delay, 0s);
+}
+
+/* Fade in Home Page*/
+@keyframes fadeIn-home {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in-home {
+  opacity: 0;
+  animation: fadeIn-home 0.7s 1s ease-in forwards;
+  will-change: opacity;
+}
+
+/* Gradient Up - Home Page */
+@keyframes gradientUp {
+  0% {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.2;
+  }
+  100% {
+    bottom: 100%;
+    left: 0;
+    position: absolute;
+    opacity: 0;
+  }
+}
+.animate-gradient-up {
+  animation: gradientUp 3s ease-in-out infinite;
+}
+
 .btn {
   @apply shadow-md;
 }

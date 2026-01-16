@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Address } from "@scaffold-ui/components";
@@ -6,7 +6,6 @@ import styles from "~~/styles/HallOfFame.module.css";
 
 const CARD_BASE_CLASS = "card w-full bg-base-100 shadow-xl border border-base-300 h-96";
 const IPFS_GATEWAY = "https://ipfs.io/ipfs/";
-const REVEAL_DELAY_MS = 1000;
 const FALLBACK_TIMEOUT_MS = 5000;
 const IMAGE_SIZE = 224;
 
@@ -54,35 +53,16 @@ export const JoinBatchCard = () => (
   </a>
 );
 
-export const GraduateCard = ({
-  event,
-  tokenURI,
-  onLoaded,
-}: {
-  event: any;
-  tokenURI?: string;
-  onLoaded?: () => void;
-}) => {
+export const GraduateCard = ({ owner, tokenURI }: { owner: string; tokenURI?: string }) => {
   const [metadata, setMetadata] = useState<{ image?: string; name?: string } | null>(null);
   const [isReady, setIsReady] = useState(false);
-  const onLoadedCalled = useRef(false);
-
-  const matchLoaded = useCallback(() => {
-    if (!onLoadedCalled.current) {
-      onLoadedCalled.current = true;
-      onLoaded?.();
-    }
-  }, [onLoaded]);
 
   useEffect(() => {
     let mounted = true;
 
     const fetchAndPreload = async () => {
       if (!tokenURI) {
-        if (mounted) {
-          setIsReady(true);
-          setTimeout(matchLoaded, REVEAL_DELAY_MS);
-        }
+        if (mounted) setIsReady(true);
         return;
       }
 
@@ -102,17 +82,11 @@ export const GraduateCard = ({
         console.error("Error fetching metadata:", e);
       }
 
-      if (mounted) {
-        setIsReady(true);
-        setTimeout(matchLoaded, REVEAL_DELAY_MS);
-      }
+      if (mounted) setIsReady(true);
     };
 
     const timeout = setTimeout(() => {
-      if (mounted) {
-        setIsReady(true);
-        matchLoaded();
-      }
+      if (mounted) setIsReady(true);
     }, FALLBACK_TIMEOUT_MS);
 
     fetchAndPreload();
@@ -121,7 +95,7 @@ export const GraduateCard = ({
       mounted = false;
       clearTimeout(timeout);
     };
-  }, [tokenURI, matchLoaded]);
+  }, [tokenURI]);
 
   if (!isReady && !metadata) return <SkeletonCard />;
 
@@ -142,10 +116,10 @@ export const GraduateCard = ({
       </figure>
       <div className="card-body items-center text-center">
         <div className="mt-2">
-          <Address address={event.args.to} />
+          <Address address={owner} />
         </div>
         <div className="card-actions mt-4">
-          <Link href={`/builders/${event.args.to}`} className="btn btn-sm btn-outline btn-accent">
+          <Link href={`/builders/${owner}`} className="btn btn-sm btn-outline btn-accent">
             View Profile
           </Link>
         </div>

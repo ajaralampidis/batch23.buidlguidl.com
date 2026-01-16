@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Address } from "@scaffold-ui/components";
+import styles from "~~/styles/HallOfFame.module.css";
 
 const CARD_BASE_CLASS = "card w-full bg-base-100 shadow-xl border border-base-300 h-96";
 const IPFS_GATEWAY = "https://ipfs.io/ipfs/";
@@ -125,7 +126,7 @@ export const GraduateCard = ({
   if (!isReady && !metadata) return <SkeletonCard />;
 
   return (
-    <div className={`${CARD_BASE_CLASS} hover:shadow-2xl transition-all duration-200 animate-fadeIn`}>
+    <div className={`${CARD_BASE_CLASS} hover:shadow-2xl transition-all duration-200 ${styles.animateFadeIn}`}>
       <figure className="px-4 pt-4 flex justify-center">
         {metadata?.image ? (
           <Image

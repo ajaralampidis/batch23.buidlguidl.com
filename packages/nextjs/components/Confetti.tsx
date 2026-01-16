@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import styles from "~~/styles/HallOfFame.module.css";
 
 const CONFIG = {
   colors: ["#6366f1", "#22c55e", "#f59e0b", "#ec4899", "#3b82f6", "#8b5cf6"],
@@ -53,7 +54,7 @@ export const Confetti = ({ trigger }: { trigger: boolean }) => {
       {pieces.map(piece => (
         <div
           key={piece.id}
-          className="absolute animate-confetti"
+          className={`absolute ${styles.animateConfetti}`}
           style={{
             left: `${piece.x}%`,
             top: "-20px",

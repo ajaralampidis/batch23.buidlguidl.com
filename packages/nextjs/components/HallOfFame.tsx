@@ -5,6 +5,7 @@ import { Confetti } from "./Confetti";
 import { GraduateCard, JoinBatchCard, SkeletonCard } from "./GraduateCard";
 import { useReadContracts } from "wagmi";
 import { useDeployedContractInfo, useScaffoldEventHistory } from "~~/hooks/scaffold-eth";
+import styles from "~~/styles/HallOfFame.module.css";
 
 const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 const BLOCKS_BATCH_SIZE = 100_000_000;
@@ -77,7 +78,7 @@ export const HallOfFame = () => {
             <div
               id={`graduate-card-${index}`}
               key={`${event.transactionHash}-${event.logIndex}`}
-              className="flex justify-center w-full sm:w-72 animate-fadeIn"
+              className={`flex justify-center w-full sm:w-72 ${styles.animateFadeIn}`}
             >
               <Confetti trigger={revealedCount === index} />
               <GraduateCard
@@ -89,7 +90,7 @@ export const HallOfFame = () => {
           );
         })}
 
-        <div id="join-batch-card" className="flex justify-center w-full sm:w-72 animate-fadeIn">
+        <div id="join-batch-card" className={`flex justify-center w-full sm:w-72 ${styles.animateFadeIn}`}>
           {isLoading || !revealed ? <SkeletonCard /> : <JoinBatchCard />}
         </div>
       </div>

@@ -119,3 +119,6 @@
 .link:hover {
   opacity: 80%;
 }
+
+@layer utilities {
+}

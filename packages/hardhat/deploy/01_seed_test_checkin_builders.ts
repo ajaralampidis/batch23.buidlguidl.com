@@ -4,7 +4,7 @@ import { DeployFunction } from "hardhat-deploy/types";
 import { Contract, Wallet } from "ethers";
 
 /**
- * Seeds yada yada bla bla
+ * Seeds BatchRegistry with test wallets to allow the subgraph to query them locally
  *
  * @param hre HardhatRuntimeEnvironment object.
  */

@@ -75,4 +75,18 @@ export default seedBatchRegistry;
 
 // Tags are useful if you have multiple deploy files and only want to run one of them.
 // e.g. yarn deploy --tags YourContract
-seedBatchRegistry.tags = ["BatchRegistry"];
+seedBatchRegistry.tags = ["seed", "BatchRegistry"];
+
+seedBatchRegistry.skip = async (hre: HardhatRuntimeEnvironment) => {
+  // Never run in CI / Vercel
+  if (process.env.CI === "true") return true;
+  if (process.env.VERCEL === "1") return true;
+
+  // Only allow local networks
+  if (!["localhost", "hardhat"].includes(hre.network.name)) return true;
+
+  // Require explicit opt-in
+  if (!process.env.SEED_LOCAL_SUBGRAPH) return true;
+
+  return true; // never run unless explicitly tagged
+};

@@ -3,8 +3,7 @@ data/
 node_modules/
 generated/
 build/
-abis/*
-!abis/BatchRegistry.json
+abis/
 /subgraph.yaml
 
 # Environment files

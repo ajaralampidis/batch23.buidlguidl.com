@@ -17,8 +17,8 @@ interface NetworkConfig {
 
 const main = async () => {
     if (!fs.existsSync(deploymentsPath)) {
-        console.error(`❌ Deployments directory not found for network '${targetNetwork}'`);
-        process.exit(1);
+        console.warn(`⚠️ Deployments directory not found for network '${targetNetwork}' - skipping subgraph generation`);
+        process.exit(0);
     }
 
     if (!fs.existsSync(templateFilePath)) {
@@ -31,8 +31,8 @@ const main = async () => {
     const contractDeploymentPath = path.join(deploymentsPath, `${contractName}.json`);
 
     if (!fs.existsSync(contractDeploymentPath)) {
-        console.error(`❌ Deployment file for contract '${contractName}' not found for network '${targetNetwork}'`);
-        process.exit(1);
+        console.warn(`⚠️ Deployment file for contract '${contractName}' not found for network '${targetNetwork}' - skipping subgraph generation`);
+        process.exit(0);
     }
 
     const contractDeployment = JSON.parse(fs.readFileSync(contractDeploymentPath, "utf8"));

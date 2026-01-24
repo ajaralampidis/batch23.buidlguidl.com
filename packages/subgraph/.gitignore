@@ -5,6 +5,7 @@ generated/
 build/
 abis/*
 !abis/BatchRegistry.json
+/subgraph.yaml
 
 # Environment files
 .env
